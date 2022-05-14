@@ -3,6 +3,7 @@ const http = require('http');
 const dotenv = require("dotenv");
 
 const connectDB = require('./config/db');
+const clientRouter = require('./routes/client.route')
 
 // Configurations
 dotenv.config();
@@ -18,10 +19,11 @@ app.get("/", (req, res) => {
     res.send("<h1>Welcome to LawBell</h1>");
 })
 
+app.use('/client', clientRouter);
+
 
 // creating server instance using http 
 const server = http.createServer(app);
-
 
 // listening the server at port 5000
 const port = process.env.PORT || 5000;
