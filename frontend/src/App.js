@@ -2,8 +2,9 @@ import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Login from './Component/login.component';
-import SignUp from './Component/signup.component';
+import Login from './Components/LoginComponent/login.component';
+import SignUp from './Components/SignUpComponent/signup.component';
+
 function App() {
   return (
     <Router>
