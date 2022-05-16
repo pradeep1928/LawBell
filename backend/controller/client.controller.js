@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const generateToken = require("../config/generateToken");
 const Client = require("../model/client.model");
 
+
 // Register route for Clients
 const registerClient = async (req, res, next) => {
     const { name, email, password, profilePic } = req.body;
@@ -47,16 +48,40 @@ const loginClient = async (req, res, next) => {
             password, client.password
         )
         if (!isPasswordCorrect) {
-            return res.status(400).json({message: "Invalid credential"})
+            return res.status(400).json({ message: "Invalid credential" })
         }
         res.status(200).json({
             client,
             token: generateToken(client._id)
-         })
+        })
     } catch (error) {
         res.status(500).send(error);
     }
-
 }
 
-module.exports = { registerClient, loginClient }
+// Get all clients 
+const getClients = async (req, res, next) => {
+    try {
+        const client = await Client.find();
+        res.status(200).json(client);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+// Update clients 
+const updateClient = async (req, res, next) => {
+    try {
+        const updatedClient = await Client.findByIdAndUpdate(req.params.id,
+            {
+                $set: req.body
+            },
+            { new: true }
+        )
+        res.status(200).json(updatedClient)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}
+
+module.exports = { registerClient, loginClient, getClients, updateClient }

@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
     res.send("<h1>Welcome to LawBell</h1>");
 })
 
-app.use('/client', clientRouter);
+app.use('/clients', clientRouter);
 
 
 // creating server instance using http 
