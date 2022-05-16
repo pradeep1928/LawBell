@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-
-export default class Login extends Component {
+import React from 'react'
+import { Component } from 'react'
+export class signin extends Component {
   render() {
     return (
       <form>
@@ -39,9 +39,11 @@ export default class Login extends Component {
           </button>
         </div>
         <p className="forgot-password text-right">
-          Forgot <a href="#">password?</a>
+          Forgot <a href="#">Password?</a>
         </p>
       </form>
     )
   }
 }
+
+export default signin;
