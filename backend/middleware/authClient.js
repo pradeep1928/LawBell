@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const Client = require('../model/client.model');
 
-const verifyClient = async (req, res, next) => {
+const authClient = async (req, res, next) => {
     let token;
     if (req.headers.authorization) {
         try {
@@ -26,4 +26,4 @@ const verifyClient = async (req, res, next) => {
 }
 
 
-module.exports = { verifyClient }
+module.exports = { authClient }

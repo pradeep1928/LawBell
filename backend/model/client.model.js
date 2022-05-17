@@ -12,12 +12,20 @@ const clientSchema = new Schema({
         required: true,
         unique: true 
     }, 
+    phoneNo: {
+        type: Number,
+        required: true
+    },
     password: {
         type: String,
         required: true 
     },
     profilePic: {
         type: String
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
 },  { timestamps: true } 
 )
