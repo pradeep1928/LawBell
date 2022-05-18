@@ -1,4 +1,4 @@
-# LawBEll FrontEnd Code
+# LawBell FrontEnd Code
 
 Steps to intialise
 (1) Clone the Repo
