@@ -7,7 +7,7 @@ const authClient = async (req, res, next) => {
     if (req.headers.authorization) {
         try {
             // getting token from headers 
-            token = eq.headers.authorization.split(" ")[1];
+            token = req.headers.authorization.split(" ")[1];
 
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             req.client = await Client.findById(decoded.id).select("-password");

@@ -116,7 +116,7 @@ const loginClient = async (req, res, next) => {
 // Get all clients 
 const getClients = async (req, res, next) => {
     try {
-        const client = await Client.find();
+        const client = await Client.find().select("-password");
         res.status(200).json(client);
     } catch (error) {
         res.status(500).json(error);
@@ -131,7 +131,7 @@ const updateClient = async (req, res, next) => {
                 $set: req.body
             },
             { new: true }
-        )
+        ).select("-password");
         res.status(200).json(updatedClient)
     } catch (error) {
         res.status(500).json(error)
