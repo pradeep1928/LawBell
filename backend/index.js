@@ -3,7 +3,8 @@ const http = require('http');
 const dotenv = require("dotenv");
 
 const connectDB = require('./config/db');
-const clientRouter = require('./routes/client.route')
+const clientRouter = require('./routes/client.route');
+const advocateRouter = require("./routes/advocate.route");
 
 // Configurations
 dotenv.config();
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 })
 
 app.use('/clients', clientRouter);
+app.use('/advocate', advocateRouter);
 
 
 // creating server instance using http 

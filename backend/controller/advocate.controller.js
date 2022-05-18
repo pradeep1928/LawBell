@@ -3,26 +3,26 @@ const nodemailer = require("nodemailer");
 const otpGenerator = require('otp-generator')
 
 const generateToken = require("../config/generateToken");
-const Client = require("../model/client.model");
+const Advocate = require("../model/advocate.model");
 const OtpVerify = require("../model/verify.model");
 
 
-// Register route for Clients
-const registerClient = async (req, res, next) => {
+// Register route for Advocate
+const registerAdvocate = async (req, res, next) => {
     const { name, email, phoneNo, password, profilePic } = req.body;
     try {
-        const existingClient = await Client.findOne({ email });
-        if (existingClient) {
-            console.log("This Client already exists");
-            return res.status(400).json({ message: "This Client already exists" });
+        const existingAdvocate = await Advocate.findOne({ email });
+        if (existingAdvocate) {
+            console.log("Advocate already exists");
+            return res.status(400).json({ message: "This Advocate already exists" });
         }
 
-        const client = await Client.create({
+        const advocate = await Advocate.create({
             name, email, phoneNo, password, profilePic
         })
 
-        if (client) {
-            sendOtpToVerifyEmail(client, res)
+        if (advocate) {
+            sendOtpToVerifyEmail(advocate, res)
         }
 
     } catch (error) {
@@ -61,18 +61,18 @@ const verifyOtp = async (req, res, next) => {
                     throw new Error("Invalid otp passed, please check your inbox.")
                 } else {
                     // success 
-                    await Client.updateOne({ email: email }, { isVerified: true });
-                    const client = await Client.findOne({ email });
+                    await Advocate.updateOne({ email: email }, { isVerified: true });
+                    const advocate = await Advocate.findOne({ email });
                     await OtpVerify.deleteMany({ email });
                     res.status(200).json({
                         status: "Verified",
-                        message: "Client Email verified successfully.",
-                        _id: client._id,
-                        name: client.name,
-                        email: client.email,
-                        phoneNo: client.phoneNo,
-                        profilePic: client.profilePic,
-                        token: generateToken(client._id)
+                        message: "Advocate Email verified successfully.",
+                        _id: advocate._id,
+                        name: advocate.name,
+                        email: advocate.email,
+                        phoneNo: advocate.phoneNo,
+                        profilePic: advocate.profilePic,
+                        token: generateToken(advocate._id)
 
                     })
                 }
@@ -88,51 +88,51 @@ const verifyOtp = async (req, res, next) => {
 }
 
 
-// Login route for client 
-const loginClient = async (req, res, next) => {
+// Login route for advocate 
+const loginAdvocate = async (req, res, next) => {
     const { email, password } = req.body;
 
     try {
-        const client = await Client.findOne({ email });
-        if (!client) {
-            console.log("This Client not found");
-            return res.status(404).json({ message: "This Client not found" });
+        const advocate = await Advocate.findOne({ email });
+        if (!advocate) {
+            console.log("User not found");
+            return res.status(404).json({ message: "Advocate not found" });
         }
         const isPasswordCorrect = await bcrypt.compare(
-            password, client.password
+            password, advocate.password
         )
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: "Invalid credential" })
         }
         res.status(200).json({
-            client,
-            token: generateToken(client._id)
+            advocate,
+            token: generateToken(advocate._id)
         })
     } catch (error) {
         res.status(500).send(error);
     }
 }
 
-// Get all clients 
-const getClients = async (req, res, next) => {
+// Get all advocates 
+const getAdvocate = async (req, res, next) => {
     try {
-        const client = await Client.find().select("-password");
-        res.status(200).json(client);
+        const advocate = await Advocate.find().select("-password");
+        res.status(200).json(advocate);
     } catch (error) {
         res.status(500).json(error);
     }
 }
 
-// Update clients 
-const updateClient = async (req, res, next) => {
+// Update advocates 
+const updateAdvocate = async (req, res, next) => {
     try {
-        const updatedClient = await Client.findByIdAndUpdate(req.params.id,
+        const updatedAdvocate = await Advocate.findByIdAndUpdate(req.params.id,
             {
                 $set: req.body
             },
             { new: true }
         ).select("-password");
-        res.status(200).json(updatedClient)
+        res.status(200).json(updatedAdvocate)
     } catch (error) {
         res.status(500).json(error)
     }
@@ -185,7 +185,7 @@ const sendOtpToVerifyEmail = async ({ _id, email }, res) => {
             status: "pending",
             message: "Verification otp sent to email",
             data: {
-                clientId: _id,
+                advocateId: _id,
                 email: email
             }
         })
@@ -200,4 +200,4 @@ const sendOtpToVerifyEmail = async ({ _id, email }, res) => {
 
 
 
-module.exports = { registerClient, loginClient, getClients, updateClient, verifyOtp }
+module.exports = { registerAdvocate, loginAdvocate, getAdvocate, updateAdvocate, verifyOtp }
