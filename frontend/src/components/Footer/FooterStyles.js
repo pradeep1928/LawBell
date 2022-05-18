@@ -4,6 +4,7 @@ padding: 80px 60px;
 background: black;
 position: absolute;
 bottom: 0;
+border-radius: 20px;
 width: 100%;
 
 

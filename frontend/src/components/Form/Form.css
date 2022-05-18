@@ -1,0 +1,25 @@
+.head {
+    text-align: center;
+    margin-top: 1%;
+}
+
+.heading {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    padding-left: 15%;
+    padding-right: 15%;
+    background-color: aquamarine;
+
+}
+
+.dropdown {
+    display: inline;
+}
+
+.form {
+    border-style: solid;
+    text-align: center;
+}
