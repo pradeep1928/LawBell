@@ -26,7 +26,12 @@ const clientSchema = new Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    isAdvocate: {
+        type: Boolean,
+        default: false
     }
+
 },  { timestamps: true } 
 )
 

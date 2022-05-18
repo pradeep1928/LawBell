@@ -13,7 +13,7 @@ const registerAdvocate = async (req, res, next) => {
     try {
         const existingAdvocate = await Advocate.findOne({ email });
         if (existingAdvocate) {
-            console.log("Advocate already exists");
+            console.log("This Advocate already exists");
             return res.status(400).json({ message: "This Advocate already exists" });
         }
 
@@ -72,7 +72,7 @@ const verifyOtp = async (req, res, next) => {
                         email: advocate.email,
                         phoneNo: advocate.phoneNo,
                         profilePic: advocate.profilePic,
-                        token: generateToken(advocate._id)
+                        token: generateToken(advocate._id, advocate.isAdvocate)
 
                     })
                 }
@@ -95,8 +95,8 @@ const loginAdvocate = async (req, res, next) => {
     try {
         const advocate = await Advocate.findOne({ email });
         if (!advocate) {
-            console.log("User not found");
-            return res.status(404).json({ message: "Advocate not found" });
+            console.log("This Advocate not found");
+            return res.status(404).json({ message: "This Advocate not found" });
         }
         const isPasswordCorrect = await bcrypt.compare(
             password, advocate.password
@@ -104,10 +104,17 @@ const loginAdvocate = async (req, res, next) => {
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: "Invalid credential" })
         }
-        res.status(200).json({
-            advocate,
-            token: generateToken(advocate._id)
-        })
+
+        // Checking if email of advocate is verified or not 
+        if (advocate.isVerified) {
+            res.status(200).json({
+                advocate,
+                token: generateToken(advocate._id, advocate.isAdvocate)
+            })
+        } else {
+            res.status(401).json("Please verify your email before login.")
+        }
+
     } catch (error) {
         res.status(500).send(error);
     }

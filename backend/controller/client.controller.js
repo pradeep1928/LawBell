@@ -72,7 +72,7 @@ const verifyOtp = async (req, res, next) => {
                         email: client.email,
                         phoneNo: client.phoneNo,
                         profilePic: client.profilePic,
-                        token: generateToken(client._id)
+                        token: generateToken(client._id, client.isAdvocate)
 
                     })
                 }
@@ -104,10 +104,17 @@ const loginClient = async (req, res, next) => {
         if (!isPasswordCorrect) {
             return res.status(400).json({ message: "Invalid credential" })
         }
-        res.status(200).json({
-            client,
-            token: generateToken(client._id)
-        })
+
+        // Checking if email of client is verified or not 
+        if (client.isVerified) {
+            res.status(200).json({
+                client,
+                token: generateToken(client._id, client.isAdvocate)
+            })
+        } else {
+            res.status(401).json("Please verify your email before login.")
+        }
+
     } catch (error) {
         res.status(500).send(error);
     }

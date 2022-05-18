@@ -26,6 +26,10 @@ const advocateSchema = new Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    isAdvocate: {
+        type: Boolean,
+        default: true
     }
 },  { timestamps: true } 
 )
