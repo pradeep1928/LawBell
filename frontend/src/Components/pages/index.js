@@ -1,22 +1,20 @@
 import React from 'react';
+import ReactCarousel from '../ImageCarousel/ReactCarousel';
+import CardComponent from "../Card/CardComponent";
 import Navbar from '../Navbar';
+import Footer from '../Footer/Footer';
+
 const Home = () => {
   return (
 
 
     <>
       <Navbar />
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh'
-        }}
-      >
+      <ReactCarousel />
+      <CardComponent />
+      <Footer />
 
-        <h1>Welcome to our website!</h1>
-      </div>
+
     </>
   );
 };

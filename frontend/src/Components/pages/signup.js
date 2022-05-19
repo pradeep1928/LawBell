@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import Footer from '../Footer/Footer';
 import Navbar from '../Navbar';
 
 
@@ -36,6 +37,8 @@ export class signup extends Component {
             Already registered <a href="/sign-in">Sign in?</a>
           </p>
         </form>
+        <Footer />
+
       </>
     )
   }

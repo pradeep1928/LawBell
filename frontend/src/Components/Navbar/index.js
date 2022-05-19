@@ -14,7 +14,7 @@ function Navbar() {
         <>
             <Nav>
                 <NavLogo to="/">
-                    LawBell
+                    LawBell: Making Justice Accessible
                 </NavLogo>
                 <Bars />
 
@@ -35,15 +35,17 @@ function Navbar() {
                         to="/contact"
                         activeStyle={{ color: 'black' }}
                     >
-                        Contact
+                        Dashbaord
                     </NavLink>
                     <NavLink
                         to="/signin" activeStyle={{ color: 'black' }}
                     >
                         Sign In
                     </NavLink>
+
                     <NavBtn>
                         <NavBtnLink to="/sign-up">Sign Up</NavBtnLink>
+
                     </NavBtn>
                 </NavMenu>
             </Nav>

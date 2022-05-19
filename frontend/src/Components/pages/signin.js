@@ -1,5 +1,6 @@
 import React from 'react'
 import { Component } from 'react'
+import Footer from '../Footer/Footer';
 import Navbar from '../Navbar';
 
 
@@ -50,6 +51,7 @@ export class signin extends Component {
             Forgot <a href="#">Password?</a>
           </p>
         </form>
+        <Footer />
       </>
     )
   }

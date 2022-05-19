@@ -1,20 +1,16 @@
 import React from 'react'
+import Footer from '../Footer/Footer';
 import Navbar from '../Navbar';
+import Screen2Card from '../Screen2Card/Screen2Card';
 
 function Contact() {
     return (
         <>
             <Navbar />
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '100vh'
-                }}
-            >
-                <h1>Contact Us</h1>
-            </div>
+
+            <Screen2Card />
+            <Footer />
+
         </>
     );
 };
