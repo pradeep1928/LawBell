@@ -5,6 +5,7 @@ import About from './Components/pages/about';
 import Contact from './Components/pages/contact';
 import SignUp from './Components/pages/signup';
 import SignIn from './Components/pages/signin';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/signin" element={SignIn} />
-        <Route path="/sign-up" element={SignUp} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );
