@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from 'react-bootstrap/Card';
 import image1 from "./images/image1.png"
+import image2 from "./images/image1.png"
 import "./Screen2Card.css"
 // import "./Screen2Card1.css"
 // import "./Screen2Card2.css"
@@ -93,9 +94,9 @@ export default function Screen2Card() {
                         <div className="container">
 
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img className="imagebox" variant="top" src={image1} />
+                                <Card.Img className="imagebox" variant="top" src="https://www.predictablegrowthmarketing.com/wp-content/uploads/71076698_s.jpg" />
                                 <Card.Body>
-                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Title>Telephonic Consultation</Card.Title>
                                     <Card.Text>
                                         Some quick example text to build on the card title and make up the bulk of
                                         the card's content.
@@ -105,9 +106,9 @@ export default function Screen2Card() {
                             </Card>
 
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src={image1} />
+                                <Card.Img className="imagebox" variant="top" src="https://blog.wunderlandgroup.com/hs-fs/hub/446617/file-2627924152-jpg/blog-images/Dollarphotoclub_58936570.jpg" />
                                 <Card.Body>
-                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Title>Post Query</Card.Title>
                                     <Card.Text>
                                         Some quick example text to build on the card title and make up the bulk of
                                         the card's content.
@@ -117,9 +118,9 @@ export default function Screen2Card() {
                             </Card>
 
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img variant="top" src={image1} />
+                                <Card.Img className="imagebox" variant="top" src="https://resultslab.com/wp-content/uploads/ask-better-questions-1280x640.jpg" />
                                 <Card.Body>
-                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Title>Text Query</Card.Title>
                                     <Card.Text>
                                         Some quick example text to build on the card title and make up the bulk of
                                         the card's content.
